@@ -1,0 +1,7 @@
+{
+	"name":"cihub",
+	"version":"0.0.1",
+	"dependencies": {
+    	"babel": "git+ssh://git@github.com:Babelbite/babel.js.git#master"
+	}
+}

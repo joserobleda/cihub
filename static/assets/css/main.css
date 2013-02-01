@@ -1,0 +1,74 @@
+
+section#main {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#repos img {
+	height: 26px;
+	width: 26px;
+	vertical-align: middle;
+	margin-right: 5px;
+	border-radius: 3px;
+}
+
+#repos .row {
+	font-weight: bold;
+	padding: 8px 0px;
+	display: block;
+	color: #222;
+}
+
+#repos .row:hover {
+	color: #000;
+}
+#repos .row:hover .arrow {
+	border-left-color: #222;
+}
+
+
+
+span.arrow {
+	display: block;
+	height: 0;
+	width: 0;
+	border-width: 5px 0 5px 5px;
+	border-style: solid;
+	border-color: transparent;
+	border-left-color: #d0d0d1;
+	position: absolute;
+	right: 20px;
+	top: 8px;
+}
+
+.boxed {
+	position: relative;
+	background: #efefef;
+	padding: 3px;
+	border-radius: 3px;
+	margin: 10px;
+}
+
+.boxed .row {
+	background-color: #e0e0e0;
+	background-image: -moz-linear-gradient(#fafafa, #e0e0e0);
+	background-image: -webkit-linear-gradient(#fafafa, #e0e0e0);
+	background-image: linear-gradient(#fafafa, #e0e0e0);
+	background-repeat: repeat-x;
+	margin: 0;
+	border-top-left-radius: 1px;
+	border-top-right-radius: 1px;
+	border: 1px solid #d8d8d8;
+	border-bottom: none;
+	padding: 10px 10px 11px 10px;
+	font-size: 14px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.boxed .row.clickable:hover {
+	background-image: -moz-linear-gradient(#d0d0d0, #eaeaea);
+	background-image: -webkit-linear-gradient(#d0d0d0, #eaeaea);
+	background-image: linear-gradient(#d0d0d0, #eaeaea);
+	border-top: 1px solid #ccc;
+	cursor: pointer;
+}
