@@ -27,5 +27,15 @@
 
 
 	app.get('/repo/:owner/:repo', function (req, res, next) {
-		res.render('repo.html', req.param.repo);
+		var user = req.session.user, repo = req.param.owner + '/' + req.param.repo.name;
+
+		user.getHooks(repo, function (err, hooks) {
+			if (err) return next();
+
+			req.param.repo.hooks = hooks;
+			console.log(hooks);
+			res.render('repo.html', req.param.repo);
+		});
+
+		
 	});

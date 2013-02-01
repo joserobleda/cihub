@@ -7,6 +7,10 @@
 
 	var Githubuser = Dbitem.extend({
 
+		getHooks: function (repo, cb) {
+			this.api('/repos/'+repo+'/hooks', cb);
+		},
+
 		getOrganizations: function (cb) {
 			this.api('/user/orgs', cb);
 		},

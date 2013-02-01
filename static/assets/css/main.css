@@ -12,13 +12,6 @@ section#main {
 	border-radius: 3px;
 }
 
-#repos .row {
-	font-weight: bold;
-	padding: 8px 0px;
-	display: block;
-	color: #222;
-}
-
 #repos .row:hover {
 	color: #000;
 }
@@ -82,6 +75,10 @@ span.arrow {
 	padding: 10px 10px 11px 10px;
 	font-size: 14px;
 	text-shadow: 0 1px 0 #fff;
+	font-weight: bold;
+	padding: 8px 0px;
+	color: #222;
+	display: block;
 }
 
 .boxed .row.clickable:hover {

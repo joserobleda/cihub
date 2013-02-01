@@ -5,6 +5,23 @@
 	<p>{{description}}</p>
 </div>
 
-<div class="panel">
-	HERE
+<div class="boxed">
+	{{#hooks}}
+		<a class="row clickable">
+			<div class="column two">
+				{{name}}
+			</div>
+			<div class="column six">
+				{{config.url}}
+			</div>
+			<div class="column two">
+				{{#events}}
+					{{.}}
+				{{/events}}
+			</div>
+			<div class="column one text-right">
+				<span class="arrow"></span>
+			</div>
+		</a>
+	{{/hooks}}
 </div>
