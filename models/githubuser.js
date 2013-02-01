@@ -27,7 +27,7 @@
 							if (orgs.hasOwnProperty(i)) repos.merge(orgs[i]);
 						}
 
-						console.log(repos);
+						//console.log(repos);
 						cb(null, repos);
 					});
 				});
