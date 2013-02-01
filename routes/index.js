@@ -10,6 +10,4 @@
 
 			res.render('repos.html', { repos: repos });
 		});
-
-		
 	});

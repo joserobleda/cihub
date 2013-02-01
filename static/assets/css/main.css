@@ -26,6 +26,25 @@ section#main {
 	border-left-color: #222;
 }
 
+#repo-title img { margin-right: 20px; float: left; height: 80px; width: 80px; }
+
+
+
+
+
+
+
+
+
+
+.clearfix:before, .clearfix:after {
+    content: "\0020"; 
+    display: block; 
+    height: 0; 
+    overflow: hidden;
+}
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
 
 
 span.arrow {
