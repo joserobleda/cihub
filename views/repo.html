@@ -5,23 +5,11 @@
 	<p>{{description}}</p>
 </div>
 
-<div class="boxed">
-	{{#hooks}}
-		<a class="row clickable">
-			<div class="column two">
-				{{name}}
-			</div>
-			<div class="column six">
-				{{config.url}}
-			</div>
-			<div class="column two">
-				{{#events}}
-					{{.}}
-				{{/events}}
-			</div>
-			<div class="column one text-right">
-				<span class="arrow"></span>
-			</div>
-		</a>
-	{{/hooks}}
+<dl class="tabs">
+  <dd class="{{#isActiveTab}}history{{/isActiveTab}}"><a href="/repo/{{full_name}}/"><span class="icon icon-list"></span> History</a></dd>
+  <dd class="{{#isActiveTab}}config{{/isActiveTab}} right"><a href="/repo/{{full_name}}/config"><span class="icon icon-cog"></span> Config</a></dd>
+</dl>
+
+<div id="content">
+	{{> tab}}
 </div>

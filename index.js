@@ -7,6 +7,11 @@
 		GITHUB_SECRET: 'a519e6b92d4d8bbf0cbcb826c713b599871c58d2'
 	});
 
+	/*app.set('partials', {
+		response: "history",
+		argument: "config"
+	});*/
+
 	app.configure('development', function(){
 		app.define({
 			PROTOCOL: 'http:',

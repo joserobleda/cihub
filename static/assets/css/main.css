@@ -28,6 +28,14 @@ section#main {
 
 
 
+.row input, .row select { vertical-align: middle; }
+dl.tabs .icon { 
+	margin-right: 5px; 
+	vertical-align: middle;
+}
+
+dl.tabs dd.right { float: right; }
+
 
 
 .clearfix:before, .clearfix:after {
