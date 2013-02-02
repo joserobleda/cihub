@@ -2,6 +2,7 @@
 	var request = require('babel/lib/request');
 	var promises = require("babel/lib/promises");
 	var Dbitem = require('babel/models/dbitem');
+	var Repo = require('./repo');
 	var Deferred = promises.Deferred;
 
 
@@ -38,6 +39,10 @@
 			});
 		},
 
+		getConfigRepo: function (repo, cb) {
+			Repo.findOne({user:this.getId(), repo:repo}, cb);
+		},
+
 		getRepos: function (cb) {
 			this.api('/user/repos', function(err, repos) {
 				if (err) return cb(err);
@@ -53,12 +58,21 @@
 			})
 		},
 
-		api: function (path, cb) {
+		api: function (path, cb, data) {
 			var url = 'https://api.github.com'+ path + '?access_token=' + this.data.access_token;
-			request.get({url:url, json:true}, function (err, res, body) {
-				if (err || body.error) return cb(err || new Error(body.error));
-				cb(null, body, res);
-			});
+
+			if (data) {
+				request.post({url:url, json:true, body: data}, function (err, res, body) {
+					if (err || body.error) return cb(err || new Error(body.error));
+					cb(null, body, res);
+				});
+
+			} else {
+				request.get({url:url, json:true}, function (err, res, body) {
+					if (err || body.error) return cb(err || new Error(body.error));
+					cb(null, body, res);
+				});
+			}
 		}
 	});
 
