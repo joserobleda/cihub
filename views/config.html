@@ -1,37 +1,43 @@
-
+{{^actions}}
 <form class="row" method="post">
 	<input type="hidden" name="_method" value="put" />
-	<div class="column five">
-		<select name="action" class="chzn-select" data-placeholder="Chose an action">
-			<option value="phpunit test">phpunit test</option>
-		</select>
-	</div>
-	<div class="column seven">
-		<button type="submit" class="button success small">Create</button>
+	<div class="column twelve">
+		<button type="submit" class="button success small">Enable actions on this repo</button>
 	</div>
 </form>
+<hr />
+{{/actions}}
 
 {{#actions.length}}
-<hr />
-
-<div class="row">
-	<div class="column twelve">
-		<table class="twelve">
-			<thead>
-				<tr>
-					<th>Action</th>
-					<th>Date</th>
-				</tr>
-			</thead>
-			<tbody>
-			{{#actions}}
-				<tr>
-					<td>{{name}}</td>
-					<td>{{time}}</td>
-				</tr>
-			{{/actions}}
-			</tbody>
-		</table>
+<form method="post">
+	<div class="row">
+		<div class="column twelve">
+			<table class="twelve">
+				<thead>
+					<tr>
+						<th style="width: 20px"><input type="checkbox" disabled /></th>
+						<th>Action</th>
+						<th>Shell</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{#actions}}
+					<tr>
+						<td><input type="checkbox" name="actions[{{name}}]" {{#date}}checked{{/date}} /></td>
+						<td>{{name}}</td>
+						<td>{{shell}}</td>
+						<td>{{date}}</td>
+					</tr>
+				{{/actions}}
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="column twelve text-right">
+			<button class="button success small" type="submit">Save</button>
+		</div>
+	</div>
+</form>
 {{/actions.length}}

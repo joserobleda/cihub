@@ -8,8 +8,8 @@
 }
 .chzn-container * {
   -webkit-box-sizing: content-box;
-  box-sizing: padding-box;
-  -moz-box-sizing: padding-box;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
 }
 .chzn-container .chzn-drop {
   background: #fff;

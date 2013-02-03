@@ -25,6 +25,59 @@
 					if (err) console.log(err);
 				});
 			}, data);
+		},
+
+		setActions: function (actions, cb) {
+			var configActions = {};
+			var availableActions = this.getAvailableActions();
+
+			for (var i in availableActions) {
+				if (availableActions.hasOwnProperty(i)) {
+					var action = availableActions[i];
+					if (actions && actions[action.name]) {
+
+						action.date = (new Date()).getTime();
+
+						// save
+						configActions[action.name] = action;
+					}
+				}
+			}
+
+			this.set('actions', configActions).save(cb);
+		},
+
+		getActions: function () {
+			var actions = [];
+			var availableActions = this.getAvailableActions();
+
+
+			for (var i in availableActions) {
+				if (availableActions.hasOwnProperty(i)) {
+					var action = availableActions[i];
+					if (this.data.actions && this.data.actions[action.name]) {
+						action = this.data.actions[action.name];
+					};
+
+					actions[i] = action;
+				}
+			};
+
+			return actions;
+		},
+
+		getAvailableActions: function () {
+			return [
+				{
+					name: 'phpunit',
+					shell: 'phpunit test'
+				},
+
+				{
+					name: 'syntax',
+					shell: 'syntax check ./'
+				}
+			];
 		}
 	});
 

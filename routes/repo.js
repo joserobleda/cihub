@@ -33,7 +33,8 @@
 			user.getConfigRepo(repo, function (err, repo) {
 				if (err) return res.redirect('/error?e=');
 
-				if (repo) viewData.actions = repo.data.actions;
+				if (repo) viewData.actions = repo.getActions();
+
 				res.render('repo.html', viewData);
 			});
 		} else {
@@ -42,15 +43,27 @@
 	});
 
 
-	app.put('/repo/:owner/:repo/:option?', function (req, res, next) {
-		var user = req.session.user, 
-			option = req.params.option || 'history',
-			repo = req.params.owner + '/' + req.params.repo.name;
+	app.post('/repo/:owner/:repo/config', function (req, res, next) {
+		var user = req.session.user, repo = req.params.owner + '/' + req.params.repo.name;
 
-		var action = {
-			name: req.body.action,
-			time: (new Date()).getTime()
+		var search = {
+			user: user.getId(),
+			repo: repo
 		};
+
+		Repo.findOne(search, function (err, repo) {
+			var actions = [];
+
+			repo.setActions(req.body.actions, function (err) {
+				res.redirect('back');
+			});
+			
+		});
+	});
+
+
+	app.put('/repo/:owner/:repo/config', function (req, res, next) {
+		var user = req.session.user, repo = req.params.owner + '/' + req.params.repo.name;
 
 		var data = {
 			user: user.getId(),
@@ -66,16 +79,9 @@
 			if (err) return res.redirect('/error?e=repo_save');
 
 			if (!repo.data.hook) {
-				repo.createHook(user);
+			//	repo.createHook(user);
 			};
 
-			var actions = repo.get('actions') || [];
-			actions.push(action);
-
-			repo.set('actions', actions).save(function (err, data) {
-				res.redirect(req.originalUrl);
-			});
+			res.redirect(req.originalUrl);
 		});
-		
-
 	});
