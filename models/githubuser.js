@@ -62,13 +62,13 @@
 			var url = 'https://api.github.com'+ path + '?access_token=' + this.data.access_token;
 
 			if (data) {
-				request.post({url:url, json:true, body: data}, function (err, res, body) {
+				return request.post({url:url, json:true, body: data}, function (err, res, body) {
 					if (err || body.error) return cb(err || new Error(body.error));
 					cb(null, body, res);
 				});
 
 			} else {
-				request.get({url:url, json:true}, function (err, res, body) {
+				return request.get({url:url, json:true}, function (err, res, body) {
 					if (err || body.error) return cb(err || new Error(body.error));
 					cb(null, body, res);
 				});

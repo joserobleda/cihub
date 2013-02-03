@@ -1,6 +1,8 @@
 
 	var Dbitem = require('babel/models/dbitem');
 	var constants = require('babel/lib/constants');
+	var fs = require('fs');
+	var exec = require('child_process').exec;
 
 
 	var Repo = Dbitem.extend({
@@ -26,6 +28,21 @@
 			}, data);
 		},
 
+		getCodeFolder: function (user, cb) {
+			var zipName = '/tmp/repo-tarball.zip';
+			user.api('/repos/'+ this.data.repo + '/zipball/', function (err) {
+				if (err) return cb(err);
+
+				exec("unzip -o -d /tmp/ " + zipName , function (err, stdout, stderr) {
+					if (err || stderr) return cb(err || stderr);
+					var creating = stdout.split('\n')[2].substring(10);
+					var folder = creating.substring(creating.indexOf(' ')+1);
+	
+					cb(err, folder);
+				});
+			}).pipe(fs.createWriteStream(zipName));
+		},
+
 		setActions: function (actions, cb) {
 			var configActions = {};
 			var availableActions = this.getAvailableActions();
@@ -49,7 +66,6 @@
 		getActions: function () {
 			var actions = [];
 			var availableActions = this.getAvailableActions();
-
 
 			for (var i in availableActions) {
 				if (availableActions.hasOwnProperty(i)) {
