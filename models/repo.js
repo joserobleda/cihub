@@ -1,7 +1,6 @@
 
 	var Dbitem = require('babel/models/dbitem');
 	var constants = require('babel/lib/constants');
-	//var request = require()
 
 
 	var Repo = Dbitem.extend({
@@ -57,6 +56,8 @@
 					var action = availableActions[i];
 					if (this.data.actions && this.data.actions[action.name]) {
 						action = this.data.actions[action.name];
+
+						action.date = new Date(action.date);
 					};
 
 					actions[i] = action;

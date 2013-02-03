@@ -52,12 +52,9 @@
 		};
 
 		Repo.findOne(search, function (err, repo) {
-			var actions = [];
-
 			repo.setActions(req.body.actions, function (err) {
 				res.redirect('back');
-			});
-			
+			});	
 		});
 	});
 
