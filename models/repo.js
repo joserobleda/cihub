@@ -35,6 +35,13 @@
 			}, data);
 		},
 
+		addEvent: function (data, cb) {
+			var events = this.data.events || [];
+			events.push(data);
+
+			this.set('events', events).save(cb);
+		},
+
 		getCodeFolder: function (user, cb) {
 			var zipName = '/tmp/repo-tarball.zip';
 			user.api('/repos/'+ this.data.repo + '/zipball/', function (err) {

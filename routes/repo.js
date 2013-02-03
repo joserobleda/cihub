@@ -31,7 +31,14 @@
 			if (this.partials.tab === tab) return 'active';
 		};
 
-		res.render('repo.html', viewData);
+		user.getConfigRepo(req.params.repoName, function (err, repo) {
+			if (err) return res.redirect('/error?e=');
+			if (repo) viewData.events = repo.data.events;
+
+			console.log(viewData.events[0]);
+			res.render('repo.html', viewData);
+		});
+
 	});
 
 

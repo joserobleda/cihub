@@ -19,15 +19,27 @@ section#main {
 	border-left-color: #222;
 }
 
+#history img { height: 18px; width: 18px; }
+
+
 #repo-title img { margin-right: 20px; float: left; height: 80px; width: 80px; }
-
-
-
 select { display: inline-block; }
 
 
 
 
+
+
+
+
+
+
+
+
+
+a.sha { width: 52px; display:inline-block; overflow:hidden; }
+
+td.icon { width: 40px; }
 .row input, .row select { vertical-align: middle; }
 dl.tabs .icon { 
 	margin-right: 5px; 
