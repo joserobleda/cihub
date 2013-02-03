@@ -6,15 +6,16 @@
 
 
 	var Repo = Dbitem.extend({
-		createHook: function (user) {
+		createHook: function (user, cb) {
+			cb = cb || function() {};
 			var self = this;
 
 			var data = {
 				"name": "web",
 				"active": true,
-				"events": ["pull_request"],
+				"events": ["pull_request", "push"],
 				"config": {
-					"url": "http://domain/hooks/github",
+					"url": "http://requestb.in/yyj9e1yy",
 					"content_type": "json"
 				}
 			};
@@ -23,7 +24,8 @@
 				if (err) return err;
 
 				self.set('hook', body).save(function (err) {
-					if (err) console.log(err);
+					if (err) return cb(err);
+					cb(null);
 				});
 			}, data);
 		},
