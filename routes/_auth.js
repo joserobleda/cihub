@@ -23,7 +23,7 @@
 			Githubuser.findById(req.session.userID, function (err, user){
 				if (err) return res.redirect('/error?e=github_login');
 
-				req.session.user = user;
+				req.user = req.session.user = user;
 				next();
 			});
 		} else {

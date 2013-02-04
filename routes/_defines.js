@@ -7,8 +7,7 @@
 		if (req.params.user) {
 			Githubuser.findById(id, function (err, user) {
 				if (err) return next();
-				req.params.user = user;
-				req.session.user = user;
+				req.params.user = req.user = user;
 				next();
 			});
 		} else {
