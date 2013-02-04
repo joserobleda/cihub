@@ -33,7 +33,10 @@
 
 		user.getConfigRepo(req.params.repoName, function (err, repo) {
 			if (err) return res.redirect('/error?e=');
-			if (repo) viewData.events = repo.data.events;
+			if (repo) {
+				viewData.events = repo.data.events;
+				viewData.eventList = repo.data.eventList;
+			}
 
 			res.render('repo.html', viewData);
 		});
