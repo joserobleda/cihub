@@ -16,6 +16,7 @@
 		var payload = req.body;
 
 		if (!payload) {
+			console.log("No payload recieved :(");
 			return true;
 		}
 
