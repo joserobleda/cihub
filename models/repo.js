@@ -11,6 +11,7 @@
 		createHook: function (user, cb) {
 			cb = cb || function() {};
 			var self = this;
+			
 			var url = constants.PROTOCOL + '//' + constants.DOMAIN + ':' + constants.PORT + '/repo/'+ user.getId()+ '/' + this.data.repo + '/hook/';
 
 			var data = {
