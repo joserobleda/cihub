@@ -31,7 +31,7 @@
 
 			user.api(url, function (err, body) {
 				
-				repo.getCodeFolder(req.session.user, function (err, file) {
+				repo.getCodeFolder(user, function (err, file) {
 					console.log(err, file);
 
 					user.api(url, function (err, body) {
