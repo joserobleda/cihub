@@ -4,8 +4,6 @@
 	var Githubuser = app.require('githubuser');
 
 
-	require('./hooks'); // we need to load hooks fisrt
-
 	social.github.login('/auth/github', function(err, req, res){
 		if (err) return console.log(err);
 
@@ -19,6 +17,11 @@
 
 
 	app.all('*', function (req, res, next) {
+		var pieces = req.originalUrl.split('/');
+		if (pieces[pieces.length-1] === 'hook') {
+			return next();	
+		} 
+
 		if (req.session.userID) {
 			Githubuser.findById(req.session.userID, function (err, user){
 				if (err) return res.redirect('/error?e=github_login');
