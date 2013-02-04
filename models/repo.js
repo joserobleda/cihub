@@ -12,7 +12,7 @@
 			cb = cb || function() {};
 			var self = this;
 
-			var url = constants.PROTOCOL + '//' + constants.DOMAIN + '/repo/'+ user.getId()+ '/' + this.data.repo + '/hook/';
+			var url = constants.PROTOCOL + '//' + constants.DOMAIN + '/repo/'+ user.getId()+ '/' + this.data.repo + '/hook';
 
 			var data = {
 				"name": "web",

@@ -45,10 +45,7 @@
 	app.post('/repo/:owner/:repo/config', function (req, res, next) {
 		var user = req.session.user, repo = req.params.owner + '/' + req.params.repo.name;
 
-		var search = {
-			user: user.getId(),
-			repo: repo
-		};
+		var search = { repo: repo };
 
 		Repo.findOne(search, function (err, repo) {
 			repo.setActions(req.body.actions, function (err) {
@@ -66,10 +63,7 @@
 			repo: repo
 		};
 
-		var search = {
-			user: data.user,
-			repo: repo
-		};
+		var search = { repo: repo };
 
 		Repo.findOrCreate(search, data, function (err, repo) {
 			if (err) return res.redirect('/error?e=repo_save');

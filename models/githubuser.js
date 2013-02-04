@@ -40,7 +40,7 @@
 		},
 
 		getConfigRepo: function (repo, cb) {
-			Repo.findOne({user:this.getId(), repo:repo}, cb);
+			Repo.findOne({ repo:repo }, cb);
 		},
 
 		getRepos: function (cb) {
