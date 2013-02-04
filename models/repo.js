@@ -18,7 +18,7 @@
 			var data = {
 				"name": "web",
 				"active": true,
-				"events": ["push"],
+				"events": ["push", "pull_request"],
 				"config": {
 					"url": url,
 					"content_type": "json"
