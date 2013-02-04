@@ -16,7 +16,7 @@
 	});
 
 	app.param('repo', function(req, res, next, id) {
-		var user = req.session.user;
+		var user = req.user;
 
 		if (req.params.owner) {
 			user.api('/repos/'+req.params.owner+'/'+ id, function (err, repoData) {
