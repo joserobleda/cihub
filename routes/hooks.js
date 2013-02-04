@@ -31,9 +31,8 @@
 
 			user.api(url, function (err, body) {
 				
-				//repo.getCodeFolder(req.session.user, function (err, file) {
-					//console.log(err, file);
-
+				repo.getCodeFolder(req.session.user, function (err, file) {
+					console.log(err, file);
 
 					user.api(url, function (err, body) {
 						if (err) return res.status(500).end();
@@ -46,7 +45,7 @@
 							res.status(200).end();
 						});
 					}, statuses.success);
-				//});
+				});
 			}, statuses.pending);
 			
 		});
