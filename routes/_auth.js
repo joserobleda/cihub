@@ -17,11 +17,6 @@
 
 
 	app.all('*', function (req, res, next) {
-		var pieces = req.originalUrl.split('/');
-		if (pieces[pieces.length-1] === 'hook') {
-			return next();	
-		} 
-
 		if (req.session.userID) {
 			Githubuser.findById(req.session.userID, function (err, user){
 				if (err) return res.redirect('/error?e=github_login');
@@ -30,6 +25,11 @@
 				next();
 			});
 		} else {
+			var pieces = req.originalUrl.split('/');
+			if (pieces[pieces.length-1] === 'hook') {
+				return next();	
+			}
+			
 			res.redirect('/auth/github');
 		}
 	});

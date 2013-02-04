@@ -48,8 +48,9 @@
 
 				exec("unzip -o -d /tmp/ " + zipName , function (err, stdout, stderr) {
 					if (err || stderr) return cb(err || stderr);
-					var creating = stdout.split('\n')[2].substring(10);
-					var folder = creating.substring(creating.indexOf(' ')+1);
+					var first = stdout.split('\n')[2].trim();
+					var fullpath = first.substring(first.indexOf(' ')+1);
+					var folder = fullpath.substring(0, fullpath.indexOf('/', 5));
 	
 					cb(err, folder);
 				});
