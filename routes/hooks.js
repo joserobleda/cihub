@@ -48,7 +48,7 @@
 
 						// save also the trigger data
 						body.payload = payload;
-						repo.addEvent(body, function (err) {
+						repo.addEvent(payload.after, body, function (err) {
 							if (err) return res.status(500).end();
 
 							res.status(200).end();

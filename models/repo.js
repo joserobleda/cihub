@@ -34,11 +34,14 @@
 			}, data);
 		},
 
-		addEvent: function (data, cb) {
-			var events = this.data.events || [];
-			events.push(data);
+		addEvent: function (ref, data, cb) {
+			var events = this.data.events || {};
+			events[ref] = data;
 
-			this.set('events', events).save(cb);
+			var eventList = this.data.eventList || [];
+			eventList.push(ref);
+
+			this.set({'events': events, 'eventList': eventList}).save(cb);
 		},
 
 		getCodeFolder: function (user, cb) {
