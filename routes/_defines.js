@@ -1,5 +1,20 @@
 
 	var app = require('babel');
+	var Githubuser = app.require('githubuser');
+
+
+	app.param('user', function(req, res, next, id) {
+		if (req.params.user) {
+			Githubuser.findById(id, function (err, user) {
+				if (err) return next();
+				req.params.user = user;
+				req.session.user = user;
+				next();
+			});
+		} else {
+			next();
+		}
+	});
 
 	app.param('repo', function(req, res, next, id) {
 		var user = req.session.user;
@@ -16,3 +31,5 @@
 			next();
 		}
 	});
+
+

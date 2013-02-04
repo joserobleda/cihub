@@ -13,7 +13,7 @@
 			var self = this;
 
 
-			var url = constants.PROTOCOL + '//' + constants.DOMAIN + ':' + constants.PORT + '/repo/' + this.data.repo + '/hook/'
+			var url = constants.PROTOCOL + '//' + constants.DOMAIN + ':' + constants.PORT + '/repo/'+ user.getId()+ '/' + this.data.repo + '/hook/';
 
 			var data = {
 				"name": "web",

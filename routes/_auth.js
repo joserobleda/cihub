@@ -3,6 +3,9 @@
 	var social = require('babel/lib/social');
 	var Githubuser = app.require('githubuser');
 
+
+	require('./hooks'); // we need to load hooks fisrt
+
 	social.github.login('/auth/github', function(err, req, res){
 		if (err) return console.log(err);
 
