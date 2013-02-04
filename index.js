@@ -7,16 +7,19 @@
 		GITHUB_SECRET: 'a519e6b92d4d8bbf0cbcb826c713b599871c58d2'
 	});
 
-	/*app.set('partials', {
-		response: "history",
-		argument: "config"
-	});*/
-
+	app.configure('production', function(){
+		app.define({
+			PROTOCOL: 'http:',
+			DOMAIN: 'cihub.babelbite.com',
+			PORT: 3001
+		});
+	});
+	
 	app.configure('development', function(){
 		app.define({
 			PROTOCOL: 'http:',
 			DOMAIN: 'localhost',
-			PORT: 3000
+			PORT: 3001
 		});
 	});
 

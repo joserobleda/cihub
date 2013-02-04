@@ -7,7 +7,7 @@
 		if (err) return console.log(err);
 
 		Githubuser.findOrCreate({id:req.body.id}, req.body, function (err, user) {
-			if (err) return res.redirect('/error?e=github_login');
+			if (err) return res.status(500).end(err.toString());
 
 			req.session.userID = user.getId();
 			res.redirect('/');

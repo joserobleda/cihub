@@ -1,4 +1,6 @@
 
+	var app = require('babel');
+	var constants = app.constants;
 	var Dbitem = require('babel/models/dbitem');
 	var constants = require('babel/lib/constants');
 	var fs = require('fs');
@@ -10,12 +12,15 @@
 			cb = cb || function() {};
 			var self = this;
 
+
+			var url = constants.PROTOCOL + '//' + constants.DOMAIN + ':' + constants.PORT + '/repo/' + this.data.repo + '/hook/'
+
 			var data = {
 				"name": "web",
 				"active": true,
-				"events": ["pull_request", "push"],
+				"events": ["push"],
 				"config": {
-					"url": "http://requestb.in/yyj9e1yy",
+					"url": url,
 					"content_type": "json"
 				}
 			};
