@@ -15,9 +15,9 @@
 		//var payload = { "after": "52fa0bcb151b772b191fd30342856c608c752fae", "before": "3b5198f2c0c4687e08af8ecdbc1a5385b5764890", "commits": [ { "added": [ "routes/_defines.js", "routes/hooks.js" ], "author": { "email": "joserobleda@gmail.com", "name": "Jose Ignacio Andres", "username": "joserobleda" }, "committer": { "email": "joserobleda@gmail.com", "name": "Jose Ignacio Andres", "username": "joserobleda" }, "distinct": true, "id": "52fa0bcb151b772b191fd30342856c608c752fae", "message": "Varios ajustes", "modified": [ "models/repo.js", "routes/repo.js" ], "removed": [], "timestamp": "2013-02-03T12:11:04-08:00", "url": "https://github.com/Babelbite/cihub/commit/52fa0bcb151b772b191fd30342856c608c752fae" } ], "compare": "https://github.com/Babelbite/cihub/compare/3b5198f2c0c4...52fa0bcb151b", "created": false, "deleted": false, "forced": false, "head_commit": { "added": [ "routes/_defines.js", "routes/hooks.js" ], "author": { "email": "joserobleda@gmail.com", "name": "Jose Ignacio Andres", "username": "joserobleda" }, "committer": { "email": "joserobleda@gmail.com", "name": "Jose Ignacio Andres", "username": "joserobleda" }, "distinct": true, "id": "52fa0bcb151b772b191fd30342856c608c752fae", "message": "Varios ajustes", "modified": [ "models/repo.js", "routes/repo.js" ], "removed": [], "timestamp": "2013-02-03T12:11:04-08:00", "url": "https://github.com/Babelbite/cihub/commit/52fa0bcb151b772b191fd30342856c608c752fae" }, "pusher": { "email": "joserobleda@gmail.com", "name": "joserobleda" }, "ref": "refs/heads/master", "repository": { "created_at": "2013-02-01T11:43:52-08:00", "description": "Continuous integration based on Github", "fork": false, "forks": 0, "has_downloads": true, "has_issues": true, "has_wiki": true, "id": 7964981, "language": "JavaScript", "name": "cihub", "open_issues": 0, "organization": "Babelbite", "owner": { "email": null, "name": "Babelbite" }, "private": true, "pushed_at": "2013-02-03T12:11:15-08:00", "size": 488, "stargazers": 0, "url": "https://github.com/Babelbite/cihub", "watchers": 0 } };
 
 		console.log("Hook for "+ req.params.repoName + " just recieved");
-		var payload = req.body;
+		var payload = req.body.payload;
 
-		if (JSON.stringify(payload) === '{}') {
+		if (!payload) {
 			console.log("No payload recieved :(");
 			return res.status(500).end();
 		}
