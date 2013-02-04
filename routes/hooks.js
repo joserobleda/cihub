@@ -35,13 +35,11 @@
 		user.getConfigRepo(req.params.repoName, function (err, repo) {
 			if (err) return console.log(err);
 
-			
 			var url = '/repos/'+ req.params.repoName +'/statuses/'+ payload.after;
 
 			user.api(url, function (err, body) {
-				
 				repo.getCodeFolder(user, function (err, file) {
-					console.log(err, file);
+					//console.log(err, file);
 
 					user.api(url, function (err, body) {
 						if (err) return res.status(500).end();
