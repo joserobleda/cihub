@@ -20,7 +20,7 @@
 				viewData.events = [];
 				for(var i in repo.data.events) {
 					if (repo.data.events.hasOwnProperty(i)) {
-						viewData.events.push(repo.data.events[i])
+						viewData.events.unshift(repo.data.events[i])
 					}
 				}
 
