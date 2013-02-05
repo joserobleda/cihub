@@ -1,0 +1,42 @@
+<div id="event">
+	<div class="row title">
+		<div class="column one">
+			<img src="{{event.creator.avatar_url}}" />
+		</div>
+		<div class="column eleven">
+			<div class="row">
+				<div class="column twelve">
+					<h5 class="subheader">{{event.payload.head_commit.message}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column seven">
+					<h6 class="subheader"><a href="{{event.payload.head_commit.url}}">{{event.payload.after}}</a></h6>
+				</div>
+				<div class="column five text-right">
+					<span class="subheader">{{event.updated_at}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr /> 
+
+	<div class="row">
+		<div class="column five centered">
+			<div class="alert-box {{event.state}} text-center">
+				{{event.description}}
+			</div>
+		</div>
+	</div>
+
+	<br />
+	
+	<div class="row">
+		<div class="column twelve">
+			<code>
+				Some code here
+			</code>
+		</div>
+	</div>
+</div>

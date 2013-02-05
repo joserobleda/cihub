@@ -1,31 +1,33 @@
-<div>
-	{{^events}}
-		No history yet. You should <a href="/repo/{{full_name}}/config">setup</a> this repo first
-	{{/events}}
+<div class="row">
+	<div class="column twelve">
+		{{^events}}
+			No history yet. You should <a href="/repo/{{full_name}}/config">setup</a> this repo first
+		{{/events}}
 
 
-	{{#eventList.length}}
-		<table id="history" class="twelve">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-			{{#events}}
-				<tr>
-					<td class="icon"><img src="{{creator.avatar_url}}" heigth="40px" /></td>
-					<td><a href="{{creator.url}}" target="_blank">{{creator.login}}</a></td>
-					<td><span class="label {{state}}">{{description}}</span></td>
-					<td><span class="subheader">{{updated_at}}</span></td>
-					<td><a href="{{payload.head_commit.url}}" target="_blank" class="sha">{{payload.head_commit.id}}</a></td>
-				</tr>
-			{{/events}}
-			</tbody>
-		</table>
-	{{/eventList.length}}
+		{{#eventList.length}}
+			<table id="history" class="twelve">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				{{#events}}
+					<tr>
+						<td class="icon"><img src="{{creator.avatar_url}}" heigth="40px" /></td>
+						<td><a href="http://github.com/{{creator.login}}" target="_blank">{{creator.login}}</a></td>
+						<td><span class="label {{state}}">{{description}}</span></td>
+						<td><span class="subheader">{{updated_at}}</span></td>
+						<td><a href="/repo/{{full_name}}/{{payload.after}}" class="sha">{{payload.head_commit.id}}</a></td>
+					</tr>
+				{{/events}}
+				</tbody>
+			</table>
+		{{/eventList.length}}
+	</div>
 </div>
