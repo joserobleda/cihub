@@ -146,7 +146,7 @@
 
 				{
 					name: 'npm test',
-					shell: 'npm test'
+					shell: 'npm install && npm test'
 				}
 			];
 		}
