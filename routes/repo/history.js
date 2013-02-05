@@ -15,8 +15,8 @@
 
 		user.getConfigRepo(req.params.repoName, function (err, repo) {
 			if (err) return res.redirect('/error?e=');
+			
 			if (repo) {
-				
 				viewData.events = [];
 				for(var i in repo.data.events) {
 					if (repo.data.events.hasOwnProperty(i)) {

@@ -42,14 +42,14 @@
 
 
 	app.put('/repo/:owner/:repo/config', function (req, res, next) {
-		var user = req.session.user, repo = req.params.owner + '/' + req.params.repo.name;
+		var user = req.session.user;
 
 		var data = {
 			user: user.getId(),
-			repo: repo
+			repo: req.params.repoName
 		};
 
-		var search = { repo: repo };
+		var search = { repo: req.params.repoName };
 
 		Repo.findOrCreate(search, data, function (err, repo) {
 			if (err) return res.redirect('/error?e=repo_save');
@@ -59,5 +59,21 @@
 			};
 
 			res.redirect(req.originalUrl);
+		});
+	});
+
+
+	app.delete('/repo/:owner/:repo/config', function (req, res, next) {
+		var search = { repo: req.params.repoName };
+
+		Repo.findOne(search, function (err, repo) {
+			if (err) return res.redirect('/error?e=repo_save');
+
+			repo.removeHook(req.user, function (err) {
+				repo.remove(function (err) {
+					res.redirect(req.originalUrl);
+				});
+			});
+
 		});
 	});

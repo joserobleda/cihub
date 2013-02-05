@@ -62,6 +62,13 @@
 			var url = 'https://api.github.com'+ path + '?access_token=' + this.data.access_token;
 
 			if (data) {
+				if (data === 'delete') {
+					return request.del({url:url, json:true}, function (err, res, body) {
+						if (err) return cb(err);
+						cb(null, body, res);
+					});
+				}
+
 				return request.post({url:url, json:true, body: data}, function (err, res, body) {
 					if (err || body.error) return cb(err || new Error(body.error));
 					cb(null, body, res);

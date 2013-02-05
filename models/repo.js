@@ -25,13 +25,23 @@
 			};
 
 			user.api('/repos/'+ this.data.repo +'/hooks', function (err, body) {
-				if (err) return err;
+				if (err) return cb(err);
 
 				self.set('hook', body).save(function (err) {
 					if (err) return cb(err);
 					cb(null);
 				});
 			}, data);
+		},
+
+		removeHook: function (user, cb) {
+			var hook = this.data.hook, url = '/repos/'+ this.data.repo +'/hooks/' +hook.id;
+
+			user.api(url, function (err, body) {
+				if (err) return cb(err);
+
+				cb(null);
+			}, 'delete');
 		},
 
 		addEvent: function (ref, data, cb) {

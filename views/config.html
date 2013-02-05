@@ -40,4 +40,14 @@
 		</div>
 	</div>
 </form>
+
+<hr />
+<form class="row" method="post">
+	<input type="hidden" name="_method" value="delete" />
+	<div class="column twelve centered">
+		<button type="submit" class="button alert small">Delete config and history on this repo</button>
+		<span class="subheader"> Waring! This action cannot be undone</span>
+	</div>
+</form>
+
 {{/actions.length}}
