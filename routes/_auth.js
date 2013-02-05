@@ -10,8 +10,13 @@
 		Githubuser.findOrCreate({id:req.body.id}, req.body, function (err, user) {
 			if (err) return res.status(500).end(err.toString());
 
-			req.session.userID = user.getId();
-			res.redirect('/');
+			user.set(body).save(function (err) {
+				if (err) return res.status(500).end(err.toString());
+
+				req.session.userID = user.getId();
+				res.redirect('/');	
+			});
+			
 		});
 	});
 
