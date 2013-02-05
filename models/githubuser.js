@@ -20,10 +20,10 @@
 			var self = this;
 
 			this.getRepos(function (err, repos) {
-				if (err) return cb(err);
+				if (err || (repos && repos.message)) return cb(err || repos.message);
 
 				self.getOrganizations(function (err, orgs) {
-					if (err) return cb(err);
+					if (err || (orgs && orgs.message)) return cb(err || orgs.message);
 
 					orgs.pipe(function (org, cb) {
 						self.getOrgRepos(org.login, cb);
