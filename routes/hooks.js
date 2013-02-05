@@ -14,7 +14,7 @@
 	app.post('/repo/:user/:owner/:repo/hook', function (req, res) {
 		var user = req.user;
 
-		console.log("Hook for "+ req.params.repoName + " just recieved");
+		//console.log("Hook for "+ req.params.repoName + " just recieved");
 		var payload = req.body;
 
 		if (JSON.stringify(payload) === '{}') {
@@ -58,7 +58,7 @@
 						repo.addEvent(payload.after, body, function (err) {
 							if (err) return res.status(500).end();
 
-							console.log(status);
+							//console.log(status);
 							res.status(200).end();
 						});
 					}, status);

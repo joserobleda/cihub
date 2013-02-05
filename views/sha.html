@@ -33,13 +33,15 @@
 	<br />
 	
 	{{#event.checks}}
-	<div class="row">
-		<div class="column twelve">
-			<code>
-				<strong>{{action.shell}}</strong> <br /><br />
-				{{stdout}}
-			</code>
+		<div class="row">
+			<div class="column twelve">
+				<code>
+					<strong>{{action.shell}}</strong> <br /><br />
+					{{stdout}}
+				</code>
+			</div>
 		</div>
-	</div>
+
+		<br />
 	{{/event.checks}}
 </div>
