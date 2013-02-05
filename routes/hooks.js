@@ -35,7 +35,7 @@
 
 
 					var status = statuses.success;
-					status.target_url = "https://"+ req.headers.host +'/'+ req.params.repoName +'/'+ payload.after;
+					status.target_url = "http://"+ req.headers.host +'/'+ req.params.repoName +'/'+ payload.after;
 
 
 					user.api(url, function (err, body) {
