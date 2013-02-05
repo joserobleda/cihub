@@ -27,12 +27,16 @@
 
 			var url = '/repos/'+ req.params.repoName +'/statuses/'+ payload.after;
 
-			user.api(url, function (err, body) {
+			user.api(url, function (err) {
+				if (err) return req.status(500).end();
+
 				repo.getCodeFolder(user, function (err, file) {
-					//console.log(err, file);
+					// we need to perform checks here
+
 
 					var status = statuses.success;
 					status.target_url = "https://"+ req.headers.host +'/'+ req.params.repoName +'/'+ payload.after;
+
 
 					user.api(url, function (err, body) {
 						if (err) return res.status(500).end();
