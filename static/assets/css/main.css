@@ -35,7 +35,7 @@ section#main {
 	border-left-color: #222;
 }
 
-#history img { height: 18px; width: 18px; }
+#history img { height: 28px; width: 28px; }
 
 
 #repo-title img { margin-right: 20px; float: left; height: 80px; width: 80px; }
@@ -52,7 +52,7 @@ section#main {
 
 
 
-td.icon { width: 40px; }
+td.icon { width: 36px; padding: 4px 4px; }
 .row input, .row select { vertical-align: middle; }
 dl.tabs .icon { 
 	margin-right: 5px; 
