@@ -32,11 +32,14 @@
 
 	<br />
 	
+	{{#event.checks}}
 	<div class="row">
 		<div class="column twelve">
 			<code>
-				Some code here
+				<strong>{{action.shell}}</strong> <br /><br />
+				{{stdout}}
 			</code>
 		</div>
 	</div>
+	{{/event.checks}}
 </div>

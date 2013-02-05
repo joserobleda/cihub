@@ -24,25 +24,37 @@
 		
 		user.getConfigRepo(req.params.repoName, function (err, repo) {
 			if (err) return console.log(err);
-
 			var url = '/repos/'+ req.params.repoName +'/statuses/'+ payload.after;
 
 			user.api(url, function (err) {
 				if (err) return req.status(500).end();
 
-				repo.getCodeFolder(user, function (err, file) {
-					// we need to perform checks here
-
-
+				repo.doChecks(user, function (err, results) {
+					if (err) return req.status(500).end();
+					
 					var status = statuses.success;
+					var checks = [];
+
+					for (var i in results) {
+						if (results.hasOwnProperty(i)) {
+							var result = results[i];
+
+							if (result.err && result.err.code) {
+								status = statuses.failure;
+							}
+						}
+					}
+
 					status.target_url = "http://"+ req.headers.host +'/'+ req.params.repoName +'/'+ payload.after;
 
 
 					user.api(url, function (err, body) {
 						if (err) return res.status(500).end();
 
-						// save also the trigger data
+						// save also the trigger data and checks results
 						body.payload = payload;
+						body.checks = results;
+
 						repo.addEvent(payload.after, body, function (err) {
 							if (err) return res.status(500).end();
 
@@ -50,8 +62,8 @@
 							res.status(200).end();
 						});
 					}, status);
-
 				});
+				
 			}, statuses.pending);
 			
 		});

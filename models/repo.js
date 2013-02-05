@@ -54,6 +54,31 @@
 			this.set({'events': events, 'eventList': eventList}).save(cb);
 		},
 
+
+		doChecks: function(user, cb) {
+			var self = this;
+
+			this.getCodeFolder(user, function (err, dir) {
+				var actions = self.getActions(true);
+
+				actions.pipe(function (action, cb) {
+					var cmd = 'cd '+ dir +' && ' + action.shell;
+					exec(cmd, function (err, stdout, stderr) {
+						cb({
+							action:action,
+							err:err,
+							stdout: stdout,
+							stderr: stderr
+						});
+					});
+
+				}).then(function(results) {
+					cb(null, results);
+				});
+
+			});
+		},
+
 		getCodeFolder: function (user, cb) {
 			var zipName = '/tmp/repo-tarball.zip';
 			user.api('/repos/'+ this.data.repo + '/zipball/', function (err) {
@@ -90,7 +115,7 @@
 			this.set('actions', configActions).save(cb);
 		},
 
-		getActions: function () {
+		getActions: function (actived) {
 			var actions = [];
 			var availableActions = this.getAvailableActions();
 
@@ -101,9 +126,11 @@
 						action = this.data.actions[action.name];
 
 						action.date = new Date(action.date);
+
+						if (actived) actions[i] = action;
 					};
 
-					actions[i] = action;
+					if (!actived) actions[i] = action;
 				}
 			};
 
@@ -114,12 +141,12 @@
 			return [
 				{
 					name: 'phpunit',
-					shell: 'phpunit test'
+					shell: 'phpunit test/'
 				},
 
 				{
-					name: 'syntax',
-					shell: 'syntax check ./'
+					name: 'npm test',
+					shell: 'npm test'
 				}
 			];
 		}

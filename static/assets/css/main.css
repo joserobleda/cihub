@@ -43,7 +43,15 @@ section#main {
 #event code { display: block; padding:12px }
 #event img { height:40px; width:40px; }
 #event .title h5, #event .title h6 { margin: 0;}
+div.alert-box.failure {
+background-color: #c60f13;
+color: #fff;
+text-shadow: 0 -1px rgba(0,0,0,0.3);
+}
 
+.label.failure {
+background-color: #c60f13;
+}
 
 
 

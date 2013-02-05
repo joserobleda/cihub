@@ -1,7 +1,7 @@
 
 	var app = require('babel');
-	var Githubuser = app.require('githubuser');
-	var Repo = app.require('repo');
+	//var Githubuser = app.require('githubuser');
+	//var Repo = app.require('repo');
 
 
 	app.get('/repo/:owner/:repo/:sha', function (req, res, next) {
