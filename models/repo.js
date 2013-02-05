@@ -62,16 +62,19 @@
 				var actions = self.getActions(true);
 
 				actions.pipe(function (action, cb) {
-					var cmd = 'cd '+ dir +' && ' + action.shell;
-					exec(cmd, function (err, stdout, stderr) {
-						cb({
-							action:action,
-							err:err,
-							stdout: stdout,
-							stderr: stderr
+					var precmd = 'cd '+ dir +' && ' + action.pre;
+					exec(precmd, function (err, stdout, stderr) {
+						
+						var cmd = 'cd '+ dir +' && ' + action.shell;
+						exec(cmd, function (err, stdout, stderr) {
+							cb({
+								action:action,
+								err:err,
+								stdout: stdout,
+								stderr: stderr
+							});
 						});
 					});
-
 				}).then(function(results) {
 					cb(null, results);
 				});
@@ -141,12 +144,14 @@
 			return [
 				{
 					name: 'phpunit',
+					pre: 'cd /tmp',
 					shell: 'phpunit test/'
 				},
 
 				{
 					name: 'npm test',
-					shell: 'npm install && npm test'
+					pre: 'npm install',
+					shell: 'npm test'
 				}
 			];
 		}
