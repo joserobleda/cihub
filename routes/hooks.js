@@ -51,16 +51,24 @@
 					user.api(url, function (err, body) {
 						if (err) return res.status(500).end();
 
-						// save also the trigger data and checks results
-						body.payload = payload;
-						body.checks = results;
 
-						repo.addEvent(payload.after, body, function (err) {
-							if (err) return res.status(500).end();
+						user.api('/repos/'+ req.params.repoName +'/commits/'+ payload.after, function (err, commitData) {
 
-							//console.log(status);
-							res.status(200).end();
+console.log(err, commitData);
+							// save also the trigger data and checks results
+							body.payload = payload;
+							body.checks = results;
+							body.commit = commitData;
+
+							repo.addEvent(payload.after, body, function (err) {
+								if (err) return res.status(500).end();
+
+								//console.log(status);
+								res.status(200).end();
+							});
 						});
+
+
 					}, status);
 				});
 				
