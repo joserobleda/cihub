@@ -54,7 +54,6 @@
 
 						user.api('/repos/'+ req.params.repoName +'/commits/'+ payload.after, function (err, commitData) {
 
-console.log(err, commitData);
 							// save also the trigger data and checks results
 							body.payload = payload;
 							body.checks = results;
