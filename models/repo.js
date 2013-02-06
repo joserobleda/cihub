@@ -70,8 +70,8 @@
 							cb({
 								action:action,
 								err:err,
-								stdout: stdout,
-								stderr: stderr
+								stdout: stdout.trim(),
+								stderr: stderr.trim()
 							});
 						});
 					});

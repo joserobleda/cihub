@@ -28,7 +28,7 @@
 					orgs.pipe(function (org, cb) {
 						self.getOrgRepos(org.login, cb);
 					}).then(function (orgs) {
-						for (i in orgs) {
+						for (var i in orgs) {
 							if (orgs.hasOwnProperty(i)) repos.merge(orgs[i]);
 						}
 

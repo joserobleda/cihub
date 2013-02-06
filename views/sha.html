@@ -35,14 +35,9 @@
 	{{#event.checks}}
 		<div class="row">
 			<div class="column twelve">
-				<code>
-					<strong>{{action.shell}}</strong> <br /><br />
-					{{stdout}}
-					<br /> {{stderr}}
-				</code>
+				<code><strong>{{action.shell}}</strong><br />{{#stdout}}{{stdout}}{{/stdout}}{{#stderr}}{{stderr}}{{/stderr}}</code>
 			</div>
 		</div>
-
 		<br />
 	{{/event.checks}}
 </div>

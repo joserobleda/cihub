@@ -40,7 +40,7 @@ section#main {
 
 #repo-title img { margin-right: 20px; float: left; height: 80px; width: 80px; }
 
-#event code { display: block; padding:12px }
+#event code { display: block; padding:12px; white-space:pre-wrap; }
 #event img { height:40px; width:40px; }
 #event .title h5, #event .title h6 { margin: 0;}
 div.alert-box.failure {
