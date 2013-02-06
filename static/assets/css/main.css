@@ -21,6 +21,13 @@ section#main {
 	margin: 0 auto;
 }
 
+@media only screen and (max-width: 960px) { 
+	section#main {
+		width: auto !important;
+		margin: 0 auto;
+	}
+}
+
 #repos img {
 	height: 26px;
 	width: 26px;
