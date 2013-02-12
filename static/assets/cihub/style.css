@@ -20,6 +20,14 @@
 	-webkit-font-smoothing: antialiased;
 }
 
+[data-iconize] {
+	font-family: 'cihub-font';
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
 /* Use the following CSS code if you want to have a class per icon */
 /*
 Instead of a list of all class selectors,

@@ -59,13 +59,15 @@
 			var self = this;
 
 			this.getCodeFolder(user, function (err, dir) {
+				if (err) console.log(err);
 				var actions = self.getActions(true);
 
 				actions.pipe(function (action, cb) {
 					var precmd = 'cd '+ dir +' && ' + action.pre;
+					
 					exec(precmd, function (err, stdout, stderr) {
-						
 						var cmd = 'cd '+ dir +' && ' + action.shell;
+						
 						exec(cmd, function (err, stdout, stderr) {
 							cb({
 								action:action,
@@ -83,18 +85,24 @@
 		},
 
 		getCodeFolder: function (user, cb) {
-			var zipName = '/tmp/repo-tarball.zip';
+			var fileName = this.data.repo.replace('/', '-');
+			var zipName = '/tmp/'+ fileName +'-tarball.zip';
 			user.api('/repos/'+ this.data.repo + '/zipball/', function (err) {
 				if (err) return cb(err);
 
-				exec("unzip -o -d /tmp/ " + zipName , function (err, stdout, stderr) {
-					if (err || stderr) return cb(err || stderr);
-					var first = stdout.split('\n')[2].trim();
-					var fullpath = first.substring(first.indexOf(' ')+1);
-					var folder = fullpath.substring(0, fullpath.indexOf('/', 5));
-	
-					cb(err, folder);
+
+				exec("unzip -z " + zipName, function (err, stdout) {
+					var versionName = stdout.split('\n')[1].trim();
+					var folder = '/tmp/'+ fileName +'-'+ versionName;
+
+					exec("unzip -q -o -d /tmp/ " + zipName, function (err, stdout, stderr) {
+						if (err || stderr) return cb(err || stderr);
+
+						cb(err, folder);
+					});
 				});
+
+
 			}).pipe(fs.createWriteStream(zipName));
 		},
 

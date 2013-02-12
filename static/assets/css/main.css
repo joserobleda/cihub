@@ -16,6 +16,7 @@ code {
   display: inline-block;
 }
 
+
 section#main {
 	width: 960px;
 	margin: 0 auto;
@@ -87,6 +88,11 @@ dl.tabs dd.right { float: right; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+
+.keep-in-line {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 span.arrow {
 	display: block;
