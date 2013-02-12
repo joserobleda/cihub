@@ -59,21 +59,27 @@
 			var self = this;
 
 			this.getCodeFolder(user, function (err, dir) {
-				if (err) console.log(err);
+				if (err) return cb(err);
 				var actions = self.getActions(true);
 
 				actions.pipe(function (action, cb) {
 					var precmd = 'cd '+ dir +' && ' + action.pre;
 					
+					// prepare test
 					exec(precmd, function (err, stdout, stderr) {
 						var cmd = 'cd '+ dir +' && ' + action.shell;
 						
+						// run test
 						exec(cmd, function (err, stdout, stderr) {
-							cb({
-								action:action,
-								err:err,
-								stdout: stdout.trim(),
-								stderr: stderr.trim()
+
+							// remove folder
+							exec('rm -R '+ dir, function (err) {
+								cb({
+									action:action,
+									err:err,
+									stdout: stdout.trim(),
+									stderr: stderr.trim()
+								});
 							});
 						});
 					});
@@ -90,15 +96,19 @@
 			user.api('/repos/'+ this.data.repo + '/zipball/', function (err) {
 				if (err) return cb(err);
 
-
+				// Get folder name
 				exec("unzip -z " + zipName, function (err, stdout) {
 					var versionName = stdout.split('\n')[1].trim();
 					var folder = '/tmp/'+ fileName +'-'+ versionName;
 
+					// Extract the file
 					exec("unzip -q -o -d /tmp/ " + zipName, function (err, stdout, stderr) {
 						if (err || stderr) return cb(err || stderr);
 
-						cb(err, folder);
+						// remove zip file
+						exec("rm "+ zipName, function (err, stdout, stderr) {
+							cb(err, folder);
+						});
 					});
 				});
 
