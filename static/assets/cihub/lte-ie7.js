@@ -8,7 +8,8 @@ window.onload = function() {
 	var icons = {
 			'icon-cog' : '&#xe000;',
 			'icon-list' : '&#xe001;',
-			'icon-spinner' : '&#xe002;'
+			'icon-spinner' : '&#xe002;',
+			'icon-redo' : '&#xe003;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

@@ -2,6 +2,10 @@
 	"name":"cihub",
 	"version":"0.0.1",
 	"dependencies": {
-    	"babel": "git+ssh://git@github.com:Babelbite/babel.js.git#master"
+    	"babel": "git+ssh://git@github.com:Babelbite/babel.js.git#master",
+    	"mocha": "1.8.1"
+	},
+	"scripts": {
+		"test": "mocha test.js"
 	}
 }

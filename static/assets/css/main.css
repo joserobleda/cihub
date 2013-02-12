@@ -1,13 +1,37 @@
 
+img { vertical-align: middle; }
+select { display: inline-block; }
+code {
+  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  color: #52595d;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 0px 3px;
+  display: inline-block;
+}
+
+
 section#main {
 	width: 960px;
 	margin: 0 auto;
 }
 
+@media only screen and (max-width: 960px) { 
+	section#main {
+		width: auto !important;
+		margin: 0 auto;
+	}
+}
+
 #repos img {
 	height: 26px;
 	width: 26px;
-	vertical-align: middle;
 	margin-right: 5px;
 	border-radius: 3px;
 }
@@ -19,15 +43,32 @@ section#main {
 	border-left-color: #222;
 }
 
+#history img { height: 28px; width: 28px; }
+
+
 #repo-title img { margin-right: 20px; float: left; height: 80px; width: 80px; }
 
+#event code { display: block; padding:12px; white-space:pre-wrap; }
+#event img { height:40px; width:40px; }
+#event .title h5, #event .title h6 { margin: 0;}
+div.alert-box.failure {
+background-color: #c60f13;
+color: #fff;
+text-shadow: 0 -1px rgba(0,0,0,0.3);
+}
+
+.label.failure {
+background-color: #c60f13;
+}
 
 
-select { display: inline-block; }
 
 
 
 
+
+
+td.icon { width: 36px; padding: 4px 4px; }
 .row input, .row select { vertical-align: middle; }
 dl.tabs .icon { 
 	margin-right: 5px; 
@@ -47,6 +88,11 @@ dl.tabs dd.right { float: right; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+
+.keep-in-line {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 span.arrow {
 	display: block;
